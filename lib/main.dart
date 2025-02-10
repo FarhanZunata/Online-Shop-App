@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:onlineshop/emailConfirmation.dart';
 import 'package:onlineshop/login.dart';
 import 'package:onlineshop/register.dart';
 import 'package:onlineshop/welcomePage.dart';
@@ -27,6 +28,10 @@ class Router extends StatelessWidget {
         GoRoute(
             path: '/login',
             builder: (context, state) => Login()
+        ),
+        GoRoute(
+            path: '/emailConfirm',
+            builder: (context, state) => EmailConfirmation()
         ),
       ],
   );

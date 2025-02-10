@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'registerService.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -10,6 +11,11 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +77,7 @@ class _RegisterState extends State<Register> {
                         Container(
                           width: 350,
                           child: TextFormField(
+                            controller: _usernameController,
                             decoration: InputDecoration(
                               labelText: 'Username',
                               border: OutlineInputBorder(
@@ -84,6 +91,7 @@ class _RegisterState extends State<Register> {
                         Container(
                           width: 350,
                           child: TextFormField(
+                            controller: _emailController,
                             decoration: InputDecoration(
                               labelText: 'Email Address',
                               border: OutlineInputBorder(
@@ -96,6 +104,7 @@ class _RegisterState extends State<Register> {
                         Container(
                           width: 350,
                           child: TextFormField(
+                            controller: _passwordController,
                             decoration: InputDecoration(
                               labelText: 'Password',
                               border: OutlineInputBorder(
@@ -108,6 +117,7 @@ class _RegisterState extends State<Register> {
                         Container(
                           width: 350,
                           child: TextFormField(
+                            controller: _confirmPasswordController,
                             decoration: InputDecoration(
                               labelText: 'Confirm Password',
                               border: OutlineInputBorder(
@@ -120,7 +130,15 @@ class _RegisterState extends State<Register> {
                         Container(
                           width: 250,
                           child: ElevatedButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                RegisterService(context).registerUser(
+                                    _usernameController.text,
+                                    _emailController.text,
+                                    _passwordController.text,
+                                    _confirmPasswordController.text,
+                                );
+                                context.go('emailConfirm');
+                              },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)
